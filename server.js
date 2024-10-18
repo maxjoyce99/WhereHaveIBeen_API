@@ -7,6 +7,7 @@ const pictureRoutes = require("./routes/pictureRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 const PORT = process.env.PORT || 3001;
+const cors = require('cors');
 
 //json middleware
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use((req,res,next) => {
   next();
 })
 
+app.use(cors());
 //Allows CORS for testing
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

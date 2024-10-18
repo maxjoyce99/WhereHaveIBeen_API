@@ -13,7 +13,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {},
-  "author": "",
+  "author": "Max Joyce",
   "license": "ISC",
-  "description": ""
+  "description": "API for WhereHaveIBeen"
 }
