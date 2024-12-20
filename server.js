@@ -5,8 +5,12 @@ require("dotenv").config();
 const locationRoutes = require("./routes/locationRoutes");
 const pictureRoutes = require("./routes/pictureRoutes");
 const userRoutes = require("./routes/userRoutes");
+var cors = require('cors');
+
 
 const PORT = process.env.PORT || 3001;
+
+app.use(cors());
 
 //json middleware
 app.use(express.json());
@@ -15,7 +19,7 @@ app.use(express.json());
 app.use((req,res,next) => {
   console.log(req.path, req.method);
   next();
-});
+})
 
 //Allows CORS for testing
 app.use((req, res, next) => {
