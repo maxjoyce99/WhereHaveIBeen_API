@@ -10,8 +10,17 @@ var cors = require('cors');
 
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
-app.use(cors({ origin: 'https://wherehaveibeen.netlify.app' }));
+//app.use(cors());
+
+app.use(cors({
+  origin: 'https://wherehaveibeen.netlify.app',  // Set the allowed origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],   // Allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Allowed headers
+  credentials: true  // Allow credentials like cookies or authorization headers (optional)
+}));
+
+// Handle preflight (OPTIONS) requests
+app.options('*', cors());  // This will ensure that OPTIONS requests are handled by CORS middleware
 
 //json middleware
 app.use(express.json());
