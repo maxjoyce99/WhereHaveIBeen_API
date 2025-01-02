@@ -11,6 +11,7 @@ var cors = require('cors');
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
+app.use(cors({ origin: 'https://wherehaveibeen.netlify.app' }));
 
 //json middleware
 app.use(express.json());
@@ -22,12 +23,10 @@ app.use((req,res,next) => {
 })
 
 //Allows CORS for testing
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Origin', 'https://wherehaveibeen.netlify.app');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
-});
+});*/
 
 //routes
 app.use("/api/locations", locationRoutes);
