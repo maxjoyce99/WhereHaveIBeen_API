@@ -43,7 +43,7 @@ app.listen(PORT, () => {
 });
 
 //Connect to database(waits to connect before starting server, should probably change this)
-console.log(process.env.MONGO_URI);
+//console.log(process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
 
