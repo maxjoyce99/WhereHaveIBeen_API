@@ -10,14 +10,34 @@ var cors = require('cors');
 
 const PORT = process.env.PORT || 3001;
 
-//app.use(cors());
+app.use(cors());
 
-app.use(cors({
+/*app.use(cors({
+  origin: 'http://localhost:3000',  // Set the allowed origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],   // Allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'],  // Allowed headers
+  credentials: true  // Allow credentials like cookies or authorization headers (optional)
+}));*/
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+//Allows CORS for testing
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+/*app.use(cors({
   origin: 'https://wherehaveibeen.netlify.app',  // Set the allowed origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'],   // Allowed HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'],  // Allowed headers
   credentials: true  // Allow credentials like cookies or authorization headers (optional)
-}));
+}));*/
 
 // Handle preflight (OPTIONS) requests
 app.options('*', cors());  // This will ensure that OPTIONS requests are handled by CORS middleware
@@ -30,12 +50,6 @@ app.use((req,res,next) => {
   console.log(req.path, req.method);
   next();
 })
-
-//Allows CORS for testing
-/*app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});*/
 
 //routes
 app.use("/api/locations", locationRoutes);

@@ -49,7 +49,8 @@ const loginUser = async(req, res) => {
 }
 
 const registerUser = async (req, res, next) => {
-    var { username, password, email, friends} = req.body
+    var { username, password, email, friends} = req.body;
+    console.log(username);
     const hash = await bcrypt.hash(password, 10);
 
     if (password.length < 6) {
@@ -74,6 +75,8 @@ const registerUser = async (req, res, next) => {
         console.log("Error: " + err);
     }
     }
+
+
 }
 
 const updateUser = async(req,res) => {
